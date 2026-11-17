@@ -28,9 +28,41 @@ int main(void) {
 
         switch (opcao) {
         case 1:
+        {
             /* TODO (I-03, depois I-05): travar -> carregar -> desenfileirar -> salvar -> destravar */
-            printf("TODO: chamar proxima\n");
+            Fila f;
+            int senha_chamada;
+
+            travar();
+            carregar_fila(&f);
+
+            senha_chamada = desenfileirar(&f);
+
+            if (senha_chamada != -1)
+            {
+                printf("Senha chamada: %d\n", senha_chamada);
+                salvar_fila(&f);
+            }
+            else
+            {
+                printf("\nFila vazia! Nenhuma senha para chamar.\n");
+            }
+            destravar();
+
+            int c;
+            while ((c = getchar()) != '\n' && c != EOF)
+                ;
+            printf("\nPressione ENTER para voltar ao menu.");
+            getchar();
+
+#ifdef _WIN32
+            system("cls");
+#else
+            system("clear");
+#endif
             break;
+        }
+
         case 2:
             /* TODO (I-04): mostrar vetor, inicio, fim e qtd */
             printf("TODO: ver fila\n");
